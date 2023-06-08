@@ -26,7 +26,7 @@ def eva_speech(sound,ref):
 st.title("How to know percent your sound?")
 option = st.selectbox(
     'เลือกศัพธ์ภาษาจีน?',
-    ('nihao', 'chifan', 'haode'))
+    ('你好', '吃饭', '好的'))
 
 st.write('You selected:', option)
 
