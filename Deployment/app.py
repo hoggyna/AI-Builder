@@ -30,9 +30,11 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 
-transtr = f"{option}.wav"
-path_sound =  open(transtr, 'rb')
-audio = path_sound.read()
+transtr = f"./{option}.wav"
+# path_sound =  open(transtr, 'rb')
+# audio = path_sound.read()
+with open(transtr, 'rb') as f:
+  audio = f.read()
 
 col1, col2 = st.columns(2)
 with col1:
@@ -50,10 +52,13 @@ with col2:
     audio_bytes = audio_recorder(sample_rate=16_000)
     if audio_bytes:
         st.audio(audio_bytes, format="audio/wav")
-        wav_file = open("audio.wav", "wb")
-        wav_file.write(audio_bytes)
+        # wav_file = open("./audio.wav", "wb")
+        # wav_file.write(audio_bytes)
+        with open("./audio.wav", "wb") as f:
+          f.write(audio_bytes)
+        
         if st.button('Predict'):
-            test = eva_speech("audio.wav",option)
+            test = eva_speech("./audio.wav",option)
             
             st.write("เปอร์เซ็นการออกเสียงของคุณ!!")
             st.write(test)
